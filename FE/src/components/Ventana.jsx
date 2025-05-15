@@ -22,7 +22,7 @@ function Ventana() {
 
     async function editar(id) {
         const { value: formValues } = await Swal.fire({
-            title: "Multiple inputs",
+            title: "Editar",
             html: `
     <input id="swal-input1" class="swal2-input" placeholder="Nombre">
     <input id="swal-input2" class="swal2-input" placeholder="Descripcion">
@@ -55,14 +55,27 @@ function Ventana() {
 
     return (
         <div>
-            <ul>
-                {Productos.map((producto) => (
-                    <li>{producto.nombre} - {producto.descripcion} - {producto.precio} - {producto.cantidad}
-                        <button onClick={() => editar(producto.id)}>Editar</button>
-                        <button onClick={() => eliminar(producto.id)}>Eliminar</button></li>
 
-                ))}
-            </ul>
+            <table>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                </thead>
+                <tbody>
+                    {Productos.map((producto)=>(
+                        <tr key={producto.id}>
+                            <td>{producto.nombre}</td>
+                            <td>{producto.descripcion}</td>
+                            <td>{producto.precio}</td>
+                            <td>{producto.cantidad}</td>
+                            <td><button onClick={() => editar(producto.id)}>Editar</button></td>
+                            <td><button onClick={() => eliminar(producto.id)}>Eliminar</button></td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }
